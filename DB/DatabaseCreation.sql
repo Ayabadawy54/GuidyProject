@@ -262,3 +262,22 @@ CREATE TABLE HelpMessage (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- Some Changes
+
+SELECT 
+    name, 
+    type_desc
+FROM 
+    sys.objects
+WHERE 
+    parent_object_id = OBJECT_ID('Users') 
+    AND type_desc LIKE '%CONSTRAINT%';
+
+-- Remove UNIQUE constraint from Password
+-- (If you already have data, you may need to drop and recreate the column)
+ALTER TABLE Users DROP CONSTRAINT [UQ__Users__A9D1053468C7E2C6]; -- The actual constraint name may differ
+
+-- Change Password column to VARCHAR(100)
+ALTER TABLE Users ALTER COLUMN [Password] VARCHAR(100);
+
