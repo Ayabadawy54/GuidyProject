@@ -47,6 +47,8 @@
 // };
 
 
+// connectToDB(); // 👈 make sure this is called
+
 require("dotenv").config();
 const sql = require("mssql");
 
@@ -88,7 +90,7 @@ module.exports = {
   connectToDB,
 };
 
-
+connectToDB();
 
 
 
